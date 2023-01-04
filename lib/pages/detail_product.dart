@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:mebel_app/model/fetured_model.dart';
 import 'package:mebel_app/theme.dart';
 
 class DetailProduct extends StatefulWidget {
-  const DetailProduct({super.key});
+  final FeturedModel feturedModel;
+  const DetailProduct({required this.feturedModel, super.key});
 
   @override
   State<DetailProduct> createState() => _DetailProductState();
@@ -116,17 +118,23 @@ class _DetailProductState extends State<DetailProduct> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "KURSI RUANG TAMU",
+                    widget.feturedModel.title,
                     style: primarytextstyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,
                     ),
                   ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Text(
-                    "Rp.200.000",
+                    "${widget.feturedModel.harga} 2000.000",
                     style: pricetextstyle.copyWith(
                         fontSize: 16, fontWeight: semiBold),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                 ],
               ),
             ),
@@ -146,10 +154,10 @@ class _DetailProductState extends State<DetailProduct> {
                     width: 60,
                     height: 60,
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                        color: primaryColor,
-                      ),
+                      // border: Border.all(
+                      //   width: 2,
+                      //   color: primaryColor,
+                      // ),
                       borderRadius: BorderRadius.circular(30),
                       image: const DecorationImage(
                         image: AssetImage(
@@ -291,7 +299,7 @@ class _DetailProductState extends State<DetailProduct> {
     return Scaffold(
       backgroundColor: backgroundC6,
       body: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
             header(),
             const Spacer(),

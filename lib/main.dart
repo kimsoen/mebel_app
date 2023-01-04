@@ -1,11 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mebel_app/pages/detail_product.dart';
 import 'package:mebel_app/pages/home_page.dart';
 import 'package:mebel_app/pages/main_page.dart';
 import 'package:mebel_app/pages/profile_toko.dart';
 import 'package:mebel_app/pages/splashscreen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
       "/": (context) => const SplashPage(),
       "/navbar-page": (context) => const NavBar(),
       "/home-page": (context) => const HomePage(),
-      "/detail-product": (context) => const DetailProduct(),
+      // "/detail-product": (context) => const DetailProduct(),
       "/profil-toko": (context) => const ProfileToko(),
     });
   }
