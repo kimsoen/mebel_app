@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "853444340593",
+    "project_id": "mebel-app",
+    "storage_bucket": "mebel-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853444340593:android:4debd725dddd3adb3fa4d0",
+        "android_client_info": {
+          "package_name": "com.example.mebel_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853444340593-pgtkch4nj7brnme1qq8bq64ar4tikvch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYrTx_lbKNxnvOCOkstNC49Lcccnro_WA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853444340593-pgtkch4nj7brnme1qq8bq64ar4tikvch.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

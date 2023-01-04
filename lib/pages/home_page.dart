@@ -1,13 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mebel_app/theme.dart';
 import 'package:mebel_app/widget/card_kategori.dart';
-import 'package:mebel_app/widget/card_product.dart';
+import 'package:mebel_app/widget/card_toko.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference featured = firestore.collection('_featured');
+
     Widget header() {
       return Container(
         margin: const EdgeInsets.only(left: 30, right: 30, top: 30),
@@ -92,23 +97,39 @@ class HomePage extends StatelessWidget {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         child: Text(
-          "Product",
+          "Featured",
           style: textStyleColor.copyWith(fontSize: 18, fontWeight: semiBold),
         ),
       );
     }
 
-    Widget listproduct() {
-      return Column(
-        children: const [
-          CardProduct(),
-          CardProduct(),
-          CardProduct(),
-          CardProduct(),
-          CardProduct(),
-          CardProduct(),
-        ],
-      );
+    Widget listCardProduct() {
+      return FutureBuilder<QuerySnapshot<Object?>>(
+          future: featured.get(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              Map<String, dynamic> listAllDocs =
+                  snapshot.data!.docs as Map<String, dynamic>;
+              return GridView.builder(
+                padding: const EdgeInsets.all(10),
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 2 / 3),
+                itemBuilder: (context, index) => CardProduct(
+                  harga: "Rp,-${listAllDocs['harga']}",
+                  image: "${listAllDocs['gambar']}",
+                  title: "${listAllDocs['title']}",
+                ),
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          });
     }
 
     return Scaffold(
@@ -122,7 +143,7 @@ class HomePage extends StatelessWidget {
             kategoritext(),
             categori(),
             textProduct(),
-            listproduct(),
+            listCardProduct(),
           ],
         ),
       ),

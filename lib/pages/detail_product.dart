@@ -37,12 +37,36 @@ class _DetailProductState extends State<DetailProduct> {
       int index = -1;
       return Column(
         children: [
+          Container(
+            margin: const EdgeInsets.only(
+              top: 30,
+              left: 30,
+              right: 30,
+            ),
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(
+                    Icons.chevron_left,
+                  ),
+                ),
+                const Icon(
+                  Icons.shopping_bag,
+                )
+              ],
+            ),
+          ),
           CarouselSlider(
             items: image
                 .map(
                   (image) => Image.asset(
                     image,
-                    width: 300,
+                    width: 270,
                     fit: BoxFit.cover,
                   ),
                 )
@@ -56,7 +80,6 @@ class _DetailProductState extends State<DetailProduct> {
               },
             ),
           ),
-          const SizedBox(height: 15),
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: image.map((e) {
@@ -64,7 +87,7 @@ class _DetailProductState extends State<DetailProduct> {
                 return indokator(index);
               }).toList()),
           const SizedBox(
-            height: 40,
+            height: 20,
           )
         ],
       );
@@ -72,7 +95,7 @@ class _DetailProductState extends State<DetailProduct> {
 
     Widget content() {
       return Container(
-        padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 20),
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.vertical(
@@ -88,22 +111,21 @@ class _DetailProductState extends State<DetailProduct> {
             Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: 30,
-                vertical: 10,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "KURSI RUANG TAU",
+                    "KURSI RUANG TAMU",
                     style: primarytextstyle.copyWith(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: semiBold,
                     ),
                   ),
                   Text(
                     "Rp.200.000",
                     style: pricetextstyle.copyWith(
-                        fontSize: 20, fontWeight: semiBold),
+                        fontSize: 16, fontWeight: semiBold),
                   )
                 ],
               ),
@@ -121,16 +143,18 @@ class _DetailProductState extends State<DetailProduct> {
                 children: [
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 15),
-                    width: 50,
-                    height: 50,
+                    width: 60,
+                    height: 60,
                     decoration: BoxDecoration(
-                      // border: Border.all(
-                      //   width: 2,
-                      //   color: primaryColor,
-                      // ),
+                      border: Border.all(
+                        width: 2,
+                        color: primaryColor,
+                      ),
                       borderRadius: BorderRadius.circular(30),
                       image: const DecorationImage(
-                        image: AssetImage("assets/image_splash.png"),
+                        image: AssetImage(
+                          "assets/image_splash.png",
+                        ),
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -143,7 +167,7 @@ class _DetailProductState extends State<DetailProduct> {
                         Text(
                           "NAMA TOKO",
                           style: primarytextstyle.copyWith(
-                              fontSize: 16, fontWeight: semiBold),
+                              fontSize: 14, fontWeight: semiBold),
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -167,76 +191,98 @@ class _DetailProductState extends State<DetailProduct> {
                     child: Center(
                         child: Text(
                       "kunjungi toko",
-                      style: primarytextstyle,
+                      style: primarytextstyle.copyWith(fontSize: 11),
                     )),
                   )
                 ],
               ),
             ),
+
             // deskripsi
             Container(
-              height: 157,
               margin: const EdgeInsets.symmetric(
                 horizontal: 30,
                 vertical: 10,
               ),
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Deskripsi",
-                      style: primarytextstyle.copyWith(
-                          fontWeight: semiBold, fontSize: 16),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                      style: secondarytextstyle.copyWith(
-                        fontSize: 12,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              ),
-            ),
-            // Chackout
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 54,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: primaryC,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "BUY NOW",
-                        style: primarytextstyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: semiBold,
-                        ),
-                      ),
+                  Text(
+                    "Deskripsi",
+                    style: primarytextstyle.copyWith(
+                        fontWeight: semiBold, fontSize: 14),
+                  ),
+                  const SizedBox(height: 7),
+                  Text(
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
+                    style: secondarytextstyle.copyWith(
+                      fontSize: 12,
                     ),
                   ),
-                  Container(
-                    height: 54,
-                    width: 54,
-                    decoration: BoxDecoration(
-                      color: primaryC,
-                      borderRadius: BorderRadius.circular(10),
+                  const SizedBox(height: 5),
+                  Text(
+                    "Alamat",
+                    style: primarytextstyle.copyWith(
+                      fontSize: 14,
+                      fontWeight: semiBold,
                     ),
-                    child: const Icon(Icons.shopping_cart_outlined),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "madewangi rt/02 rw/02 kel.setiamulya, kecamatan tamansari kota tasikmalaya",
+                    style: secondarytextstyle.copyWith(
+                      fontSize: 12,
+                    ),
+                  ),
+
+                  // Chackout
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: primaryC,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: const Icon(
+                            Icons.shopping_cart_rounded,
+                            size: 35,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: SizedBox(
+                            height: 54,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: primaryC,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    12,
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                "BUY NOW",
+                                style: primarytextstyle.copyWith(
+                                  fontSize: 18,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
-            ),
-            SizedBox(height: 19),
+            )
           ],
         ),
       );
@@ -248,6 +294,7 @@ class _DetailProductState extends State<DetailProduct> {
         child: Column(
           children: [
             header(),
+            const Spacer(),
             content(),
           ],
         ),
