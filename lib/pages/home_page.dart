@@ -5,13 +5,22 @@ import 'package:mebel_app/widget/card_kategori.dart';
 import 'package:mebel_app/widget/card_toko.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    CollectionReference featured = firestore.collection('_featured');
+    CollectionReference featured = firestore.collection('featured');
+
+    Future<DocumentSnapshot> getproduct(String id) async {
+      return await featured.doc().get();
+    }
 
     Widget header() {
       return Container(
@@ -108,23 +117,27 @@ class HomePage extends StatelessWidget {
           future: featured.get(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              Map<String, dynamic> listAllDocs =
-                  snapshot.data!.docs as Map<String, dynamic>;
+              List<QueryDocumentSnapshot<Object?>> data = snapshot.data!.docs;
               return GridView.builder(
-                padding: const EdgeInsets.all(10),
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    childAspectRatio: 2 / 3),
-                itemBuilder: (context, index) => CardProduct(
-                  harga: "Rp,-${listAllDocs['harga']}",
-                  image: "${listAllDocs['gambar']}",
-                  title: "${listAllDocs['title']}",
-                ),
-              );
+                  padding: const EdgeInsets.all(10),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: data.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 2 / 3),
+                  itemBuilder: (context, index) {
+                    Map<String, dynamic> dataFeatured =
+                        data[index].data() as Map<String, dynamic>;
+
+                    return CardProduct(
+                      gambar: "${dataFeatured['gambar']}",
+                      harga: '${dataFeatured['harga']}',
+                      title: '${dataFeatured['title']}',
+                    );
+                  });
             }
             return Center(
               child: CircularProgressIndicator(),

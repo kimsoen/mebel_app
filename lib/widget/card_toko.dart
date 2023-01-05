@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mebel_app/model/featured_model.dart';
 import 'package:mebel_app/theme.dart';
 
 // class CardProduct extends StatelessWidget {
@@ -44,14 +45,14 @@ import 'package:mebel_app/theme.dart';
 
 class CardProduct extends StatelessWidget {
   const CardProduct(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.harga});
+      {super.key, required this.gambar, required this.title, required this.harga
+      // required this.feturedModel
+      });
 
-  final String image;
+  final String gambar;
   final String title;
   final String harga;
+  // final FeturedModel feturedModel;
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +70,12 @@ class CardProduct extends StatelessWidget {
               decoration: BoxDecoration(
                 color: backgroundC6,
                 borderRadius: BorderRadius.circular(3),
+                border: Border.all(color: backgroundC6, width: 5),
                 image: DecorationImage(
-                  image: AssetImage(
-                    image,
+                  image: NetworkImage(
+                    gambar,
                   ),
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
