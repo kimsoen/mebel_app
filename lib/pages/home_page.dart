@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mebel_app/theme.dart';
 import 'package:mebel_app/widget/card_kategori.dart';
 import 'package:mebel_app/widget/card_toko.dart';
-import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -46,13 +45,13 @@ class _HomePageState extends State<HomePage> {
 
     Widget banner() {
       return Container(
-        margin: const EdgeInsets.all(30),
-        height: 200,
+        margin: const EdgeInsets.all(20),
+        height: 180,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: const DecorationImage(
               image: AssetImage(
-                'assets/banner2.jpg',
+                'assets/banner.jpg',
               ),
               fit: BoxFit.cover),
         ),
@@ -61,7 +60,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget kategoritext() {
       return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 30),
+        margin: const EdgeInsets.only(bottom: 10, left: 20),
         child: Text(
           "Kategori",
           style: textStyleColor.copyWith(fontSize: 18, fontWeight: semiBold),
@@ -70,33 +69,38 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget categori() {
-      return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 30),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: const [
-              CardCategori(
-                bgImage: true,
-                imagUrl: "assets/kursi.png",
-                textK: "kursi",
-              ),
-              CardCategori(
-                bgImage: false,
-                imagUrl: "assets/kursi1.png",
-                textK: "Lumba lumba",
-              ),
-              CardCategori(
-                bgImage: true,
-                imagUrl: "assets/kursi.png",
-                textK: "kursi",
-              ),
-              CardCategori(
-                bgImage: false,
-                imagUrl: "assets/kursi1.png",
-                textK: "kursi",
-              ),
-            ],
+      return GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, "/detail-product");
+        },
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: const [
+                CardCategori(
+                  bgImage: true,
+                  imagUrl: "assets/kursi.png",
+                  textK: "kursi",
+                ),
+                CardCategori(
+                  bgImage: false,
+                  imagUrl: "assets/kursi1.png",
+                  textK: "Lumba lumba",
+                ),
+                CardCategori(
+                  bgImage: true,
+                  imagUrl: "assets/kursi.png",
+                  textK: "kursi",
+                ),
+                CardCategori(
+                  bgImage: false,
+                  imagUrl: "assets/kursi1.png",
+                  textK: "kursi",
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -104,7 +108,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget textProduct() {
       return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Text(
           "Featured",
           style: textStyleColor.copyWith(fontSize: 18, fontWeight: semiBold),
@@ -123,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: data.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
@@ -139,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                     );
                   });
             }
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           });

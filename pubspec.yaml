@@ -32,12 +32,14 @@ dependencies:
   carousel_slider: ^4.2.1
   cloud_firestore: ^4.3.1
   cupertino_icons: ^1.0.2
+  custom_navigation_bar: ^0.8.2
   firebase_analytics: ^10.1.0
   firebase_core: ^2.4.1
   flutter:
     sdk: flutter
   get: ^4.6.5
   google_fonts: ^3.0.1
+  infinite_cards: ^1.0.3
 
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -1,22 +1,24 @@
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mebel_app/pages/home_page.dart';
 import 'package:mebel_app/pages/second_page.dart';
 import 'package:mebel_app/pages/setting_page.dart';
+import 'package:mebel_app/theme.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<NavBar> createState() => _navBarState();
 }
 
-int currenIndex = 1;
+int _currentIndex = 0;
 
-class _NavBarState extends State<NavBar> {
+class _navBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     Widget pages() {
-      switch (currenIndex) {
+      switch (_currentIndex) {
         case 0:
           return const SecondPage();
         case 1:
@@ -28,32 +30,43 @@ class _NavBarState extends State<NavBar> {
       }
     }
 
-    Widget customnavbar() {
-      return BottomNavigationBar(
-        selectedItemColor: Colors.green,
-        currentIndex: currenIndex,
+    Widget customNavbar() {
+      return CustomNavigationBar(
+        iconSize: 30.0,
+        selectedColor: const Color(0xff040307),
+        strokeColor: const Color(0x30040307),
+        unSelectedColor: const Color(0xffacacac),
+        backgroundColor: backgroundC2,
         items: [
-          BottomNavigationBarItem(
-              icon: Image.asset(
+          CustomNavigationBarItem(
+            icon: const Image(
+              image: AssetImage(
                 "assets/menu.png",
-                width: 25,
               ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: Image.asset("assets/home.png", width: 25), label: ""),
-          BottomNavigationBarItem(
-              icon: Image.asset("assets/search.png", width: 25), label: ""),
+            ),
+          ),
+          CustomNavigationBarItem(
+            icon: const Image(
+              image: AssetImage(
+                "assets/home.png",
+              ),
+            ),
+          ),
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.lightbulb_outline),
+          ),
         ],
-        onTap: (value) {
+        currentIndex: _currentIndex,
+        onTap: (index) {
           setState(() {
-            currenIndex = value;
+            _currentIndex = index;
           });
         },
       );
     }
 
     return Scaffold(
-      bottomNavigationBar: customnavbar(),
+      bottomNavigationBar: customNavbar(),
       body: pages(),
     );
   }
