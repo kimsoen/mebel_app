@@ -11,7 +11,7 @@ class SecondPage extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(20),
         child: Text(
-          "CATEGORY",
+          "KATEGORI",
           style: primarytextstyle.copyWith(fontSize: 22),
         ),
       );
@@ -26,19 +26,19 @@ class SecondPage extends StatelessWidget {
           ),
           CardCategory(
             imageUrl: "assets/category_lighting.png",
-            title: 'DEKORASI',
+            title: 'Lightting',
           ),
           CardCategory(
             imageUrl: "assets/category_furniture.png",
-            title: 'DEKORASI',
+            title: 'Furniture',
           ),
           CardCategory(
             imageUrl: "assets/category_kitchen.png",
-            title: 'DEKORASI',
+            title: 'Kitchen',
           ),
           CardCategory(
             imageUrl: "assets/category_bad.png",
-            title: 'DEKORASI',
+            title: 'bed & beth ',
           ),
         ],
       );

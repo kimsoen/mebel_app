@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mebel_app/pages/detail_product.dart';
 import 'package:mebel_app/theme.dart';
 import 'package:mebel_app/widget/card_kategori.dart';
-import 'package:mebel_app/widget/card_toko.dart';
+import 'package:mebel_app/widget/card_product.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -135,11 +136,17 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     Map<String, dynamic> dataFeatured =
                         data[index].data() as Map<String, dynamic>;
-
                     return CardProduct(
                       gambar: "${dataFeatured['gambar']}",
                       harga: '${dataFeatured['harga']}',
                       title: '${dataFeatured['title']}',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailProduct(),
+                            ));
+                      },
                     );
                   });
             }

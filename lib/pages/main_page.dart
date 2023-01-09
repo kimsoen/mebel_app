@@ -12,7 +12,7 @@ class NavBar extends StatefulWidget {
   State<NavBar> createState() => _navBarState();
 }
 
-int _currentIndex = 0;
+int _currentIndex = 1;
 
 class _navBarState extends State<NavBar> {
   @override

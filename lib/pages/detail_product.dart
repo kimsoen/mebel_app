@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mebel_app/theme.dart';
+import 'package:mebel_app/widget/card_product.dart';
 
 class DetailProduct extends StatefulWidget {
-  const DetailProduct({super.key});
-
+  const DetailProduct({
+    super.key,
+  });
   @override
   State<DetailProduct> createState() => _DetailProductState();
 }
@@ -143,13 +145,13 @@ class _DetailProductState extends State<DetailProduct> {
                 children: [
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 15),
-                    width: 60,
-                    height: 60,
+                    width: 50,
+                    height: 50,
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                        color: primaryColor,
-                      ),
+                      // border: Border.all(
+                      //   width: 2,
+                      //   color: primaryColor,
+                      // ),
                       borderRadius: BorderRadius.circular(30),
                       image: const DecorationImage(
                         image: AssetImage(
@@ -163,15 +165,19 @@ class _DetailProductState extends State<DetailProduct> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 15),
                         Text(
-                          "NAMA TOKO",
+                          "nama toko",
                           style: primarytextstyle.copyWith(
-                              fontSize: 14, fontWeight: semiBold),
+                            fontSize: 14,
+                            fontWeight: semiBold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 5),
                         Text(
-                          "444 produk",
+                          "total product",
                           style: secondarytextstyle,
                         )
                       ],
@@ -219,7 +225,7 @@ class _DetailProductState extends State<DetailProduct> {
                       fontSize: 12,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 10),
                   Text(
                     "Alamat",
                     style: primarytextstyle.copyWith(
@@ -229,7 +235,7 @@ class _DetailProductState extends State<DetailProduct> {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "madewangi rt/02 rw/02 kel.setiamulya, kecamatan tamansari kota tasikmalaya",
+                    "madewangi rt/02 rw/02 kel.setiamulya, kecamatan tamansari kota tasikmalaya,",
                     style: secondarytextstyle.copyWith(
                       fontSize: 12,
                     ),
@@ -291,7 +297,7 @@ class _DetailProductState extends State<DetailProduct> {
     return Scaffold(
       backgroundColor: backgroundC6,
       body: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
             header(),
             const Spacer(),
