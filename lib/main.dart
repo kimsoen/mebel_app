@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       "/": (context) => const SplashPage(),
       "/navbar-page": (context) => const NavBar(),
       "/home-page": (context) => const HomePage(),
-      "/detail-product": (context) => const DetailProduct(),
+      // "/detail-product": (context) => const DetailProduct(),
       "/profil-toko": (context) => const ProfileToko(),
     });
   }

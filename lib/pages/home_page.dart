@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mebel_app/pages/detail_product.dart';
+import 'package:mebel_app/pages/detail_produk.dart';
 import 'package:mebel_app/theme.dart';
 import 'package:mebel_app/widget/card_kategori.dart';
 import 'package:mebel_app/widget/card_product.dart';
@@ -144,7 +145,12 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailProduct(),
+                              builder: (context) => DetailProduk(
+                                gambar: dataFeatured["gambar"],
+                                name: dataFeatured["title"],
+                                price: dataFeatured["harga"],
+                                alamat: dataFeatured["alamat"],
+                              ),
                             ));
                       },
                     );
