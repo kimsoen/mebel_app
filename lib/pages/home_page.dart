@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mebel_app/pages/detail_product.dart';
 import 'package:mebel_app/pages/detail_produk.dart';
 import 'package:mebel_app/theme.dart';
 import 'package:mebel_app/widget/card_kategori.dart';
 import 'package:mebel_app/widget/card_product.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,6 +23,27 @@ class _HomePageState extends State<HomePage> {
 
     Future<DocumentSnapshot> getproduct(String id) async {
       return await featured.doc().get();
+    }
+
+    Future<List<Map<String, dynamic>>> getProducts() async {
+      final url = Uri.parse('http://192.168.18.5:8000/api/products');
+      var headers = {'Content-Type': 'application/json'};
+      var response = await http.get(url, headers: headers);
+      debugPrint(response.body);
+      debugPrint(response.statusCode.toString());
+
+      if (response.statusCode == 200) {
+        List data = jsonDecode(response.body)['data'];
+        List<Map<String, dynamic>> products = [];
+
+        for (var item in data) {
+          products.add(item);
+        }
+
+        return products;
+      } else {
+        throw Exception('Gagal Get Products!');
+      }
     }
 
     Widget header() {
@@ -119,35 +142,34 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget listCardProduct() {
-      return FutureBuilder<QuerySnapshot<Object?>>(
-          future: featured.get(),
+      return FutureBuilder<List<Map<String, dynamic>>>(
+          future: getProducts(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              List<QueryDocumentSnapshot<Object?>> data = snapshot.data!.docs;
+              List<Map<String, dynamic>> listProduct = snapshot.data!;
               return GridView.builder(
                   padding: const EdgeInsets.all(10),
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: data.length,
+                  itemCount: listProduct.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
                       childAspectRatio: 2 / 3),
                   itemBuilder: (context, index) {
-                    Map<String, dynamic> dataFeatured =
-                        data[index].data() as Map<String, dynamic>;
+                    Map<String, dynamic> dataFeatured = listProduct[index];
                     return CardProduct(
                       gambar: "${dataFeatured['gambar']}",
-                      harga: '${dataFeatured['harga']}',
-                      title: '${dataFeatured['title']}',
+                      harga: 'Rp. ${dataFeatured['harga']}',
+                      title: '${dataFeatured['nama']}',
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => DetailProduk(
                                 gambar: dataFeatured["gambar"],
-                                name: dataFeatured["title"],
+                                name: dataFeatured["nama"],
                                 price: dataFeatured["harga"],
                                 alamat: dataFeatured["alamat"],
                               ),

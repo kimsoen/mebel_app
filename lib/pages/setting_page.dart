@@ -27,7 +27,7 @@ class SettingPage extends StatelessWidget {
               "mebel app adalah sebuah aplikasi yang menampilkan sebuah produk furniture / interios sebuah bangunan, aplikasi ini dibuat dengan tujuan mengelola data toko mabel yang ada di kecamatan tamansari untuk kemajuan di bidang industri dengan mengimplementasikan smart city.",
               style: primarytextstyle,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Text(
@@ -41,7 +41,7 @@ class SettingPage extends StatelessWidget {
                 style: primarytextstyle,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(

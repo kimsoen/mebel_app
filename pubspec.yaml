@@ -39,6 +39,8 @@ dependencies:
     sdk: flutter
   get: ^4.6.5
   google_fonts: ^3.0.1
+  http: ^0.13.5
+  postgres: ^2.5.2
   url_launcher: ^6.1.7
 
 dev_dependencies:

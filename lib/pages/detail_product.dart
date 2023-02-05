@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mebel_app/theme.dart';
-import 'package:mebel_app/widget/card_product.dart';
 
 class DetailProduct extends StatefulWidget {
   final String imageUrl;

@@ -9,12 +9,12 @@ class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
   @override
-  State<NavBar> createState() => _navBarState();
+  State<NavBar> createState() => _NavBarState();
 }
 
 int _currentIndex = 1;
 
-class _navBarState extends State<NavBar> {
+class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     Widget pages() {

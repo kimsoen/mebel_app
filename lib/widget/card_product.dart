@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mebel_app/model/featured_model.dart';
 import 'package:mebel_app/theme.dart';
 
 class CardProduct extends StatelessWidget {

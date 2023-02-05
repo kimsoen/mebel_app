@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mebel_app/theme.dart';
@@ -141,7 +139,7 @@ class _DetailProdukState extends State<DetailProduk> {
 
     Widget content() {
       return Container(
-        margin: EdgeInsets.only(top: 250),
+        margin: const EdgeInsets.only(top: 250),
         padding: const EdgeInsets.only(top: 20),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -152,8 +150,8 @@ class _DetailProdukState extends State<DetailProduk> {
           ),
           color: backgroundC1,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               margin: const EdgeInsets.symmetric(
@@ -173,7 +171,7 @@ class _DetailProdukState extends State<DetailProduk> {
                     height: 5,
                   ),
                   Text(
-                    "${widget.price} 2000.000",
+                    "Rp. ${widget.price}",
                     style: pricetextstyle.copyWith(
                         fontSize: 16, fontWeight: semiBold),
                   ),
