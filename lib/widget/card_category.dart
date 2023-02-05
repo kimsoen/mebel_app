@@ -45,7 +45,7 @@ class CardCategory extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text("VIEW ALL"),
+                    child: const Text("VIEW ALL"),
                   ),
                 ],
               ),
